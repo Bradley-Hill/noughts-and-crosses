@@ -40,10 +40,15 @@ const GameBoard = (function() {
         board[i] = [];
         for (let j = 0; j < Columns; j++){
             board[i][j] = gameCell.Cell();
-        }
-    }
+        };
+    };
+
+    const getBoard = () => board;
+
+    return {getBoard};
   })();
 
+console.log(GameBoard.getBoard());
 
 // const GameBoard = (() {
 //   const rows = 3
