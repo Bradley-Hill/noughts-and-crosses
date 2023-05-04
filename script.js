@@ -13,25 +13,20 @@ const gameCell = (function(){
     };
 
     return {
-        setValue, getValue
+        setValue, 
+        getValue
     };
   };
 
-  const CellOne = Cell();
-  const CellTwo = Cell();
-  const CellThree = Cell();
-  const CellFour = Cell();
-  const CellFive = Cell();
-  const CellSix = Cell();
-  const CellSeven = Cell();
-  const CellEight = Cell();
-  const CellNine = Cell();
+  return {
+    Cell
+  };
 
 })();
 
 //Creating Gameboard function
 const GameBoard = (function() {
-    // code here
+    const {Cell} = gameCell;
     const Rows = 3
     const Columns = 3
     const board = []
@@ -39,7 +34,7 @@ const GameBoard = (function() {
     for (let i = 0; i < Rows; i++){
         board[i] = [];
         for (let j = 0; j < Columns; j++){
-            board[i][j] = gameCell.Cell();
+            board[i][j] = Cell();
         };
     };
 
@@ -48,6 +43,15 @@ const GameBoard = (function() {
     return {getBoard};
   })();
 
+const playerFactory = (function(){
+    const player = () => {
+        playerId = {
+            marker: 'X' || 'O'
+        }
+    }
+})
+
+//Displaying the gameBoard
 console.log(GameBoard.getBoard());
 
 // const GameBoard = (() {
