@@ -8,8 +8,31 @@
     <title>Noughts and Crosses</title>
   </head>
   <body>
-    <section class="header"><h1 class="title">Ex's and Zeroes</h1></section>
+    <section class="header"><h1 class="title">Noughts and Crosses</h1></section>
     <section class="main">
+      <div id="form-container">
+        <form id="player-form">
+          <div>
+            <h2>Player 1</h2>
+            <label for="player1-name">Player Name:</label>
+            <input type="text" name="player1-name" id="player1-name" />
+            <br />
+            <label for="player1-marker">Player Marker:</label>
+            <input type="text" name="player1-marker" id="player1-marker" />
+          </div>
+
+          <div>
+            <h2>Player 2</h2>
+            <label for="player2-name">Player Name:</label>
+            <input type="text" name="player2-name" id="player2-name" />
+            <br />
+            <label for="player2-marker">Player Marker:</label>
+            <input type="text" name="player2-marker" id="player2-marker" />
+          </div>
+
+          <button type="submit">Start Game</button>
+        </form>
+      </div>
       <div class="grid-container">
         <div id="cell-1" class="cell">01</div>
         <div id="cell-2" class="cell">02</div>
