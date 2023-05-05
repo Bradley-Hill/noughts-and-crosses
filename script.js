@@ -87,6 +87,11 @@
 
     const gameLogic = (function(){
         //gameLogic functions go here
+        function initGame //TODO for initialising game
+        function placeMark //TODO for placing marker in cell
+        function checkWin //TODO for checking win condition
+        function checkTie //TODO for checking tie condition
+        function switchPlayer //TODO for switching players turn
     })();
   
     //Displaying the gameBoard
