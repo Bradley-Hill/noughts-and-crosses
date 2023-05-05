@@ -3,11 +3,32 @@ const playerForm = document.getElementById('player-form');
 playerForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const playerName1Input = document.getElementById('player1-name');
-    const playerName2Input = document.getElementById('player2-name');
     const playerMarker1Input = document.getElementById('player1-marker');
     const playerMarker2Input = document.getElementById('player2-marker');
-})
+
+    const playerMarker1 = playerMarker1Input.value;
+    const playerMarker2 = playerMarker2Input.value;
+
+    (function validateMarkers(){
+        let errorMessage;
+
+        if(playerMarker1 === playerMarker2){
+            errorMessage = "Both players cannot have the same Mark. Please choose different Marks.";
+        } else if (playerMarker1 === 'X' && playerMarker2 === 'X'){
+            errorMessage = "Only one player can have the X mark. Please choose different Marks."
+        } else if (playerMarker1 === 'O' && playerMarker2 === 'O'){
+            errorMessage = "Only one player can have the O mark. Please choose different Marks"
+        }
+
+        if(errorMessage){
+            alert(errorMessage);
+            playerMarker1Input.selectedIndex = 0
+            playerMarker2Input.selectedIndex = 0
+            playerMarker1Input.focus();
+        }
+    })
+
+})();
 
 const gameCell = (function(){
   const Cell = () => {
