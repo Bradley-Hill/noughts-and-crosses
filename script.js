@@ -44,12 +44,11 @@ const GameBoard = (function() {
   })();
 
 const playerFactory = (function(){
-    const player = () => {
-        playerId = {
-            marker: 'X' || 'O'
-        }
-    }
-})
+    const createPlayer = (name,marker) => {
+    return{name,marker};
+    };
+    return {createPlayer};
+})();
 
 //Displaying the gameBoard
 console.log(GameBoard.getBoard());
