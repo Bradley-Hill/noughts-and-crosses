@@ -1,4 +1,4 @@
-(function(){ 
+
     const playerForm = document.getElementById('player-form');
   
     playerForm.addEventListener('submit', (event) => {
@@ -84,10 +84,14 @@
       };
       return {createPlayer};
     })();
+
+    const gameLogic = (function(){
+        //gameLogic functions go here
+    })();
   
     //Displaying the gameBoard
     console.log(GameBoard.getBoard());
-  })();
+  
 
 
 // const GameBoard = (() {
