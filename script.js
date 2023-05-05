@@ -45,6 +45,9 @@ const GameBoard = (function() {
 
 const playerFactory = (function(){
     const createPlayer = (name,marker) => {
+        if (marker !== 'X' && marker !== 'O'){
+            throw new Error('Invalid marker, must be either "X" or "O"');
+        }
     return{name,marker};
     };
     return {createPlayer};
