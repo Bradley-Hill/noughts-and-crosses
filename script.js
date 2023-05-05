@@ -1,3 +1,14 @@
+const playerForm = document.getElementById('player-form');
+
+playerForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const playerName1Input = document.getElementById('player1-name');
+    const playerName2Input = document.getElementById('player2-name');
+    const playerMarker1Input = document.getElementById('player1-marker');
+    const playerMarker2Input = document.getElementById('player2-marker');
+})
+
 const gameCell = (function(){
   const Cell = () => {
     const state = {
