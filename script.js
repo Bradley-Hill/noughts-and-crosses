@@ -6,9 +6,13 @@
   
         const playerMarker1Input = document.getElementById('player1-marker');
         const playerMarker2Input = document.getElementById('player2-marker');
+        const playerNameInput = document.getElementById('player1-name');
+        const playerName2Input = document.getElementById('player2-name');
   
         const playerMarker1 = playerMarker1Input.value;
         const playerMarker2 = playerMarker2Input.value;
+        const playerName1 = playerName1Input.value;
+        const playerName2 = playerName2Input.value;
   
         (function validateMarkers(){
             let errorMessage;
@@ -28,6 +32,7 @@
                 playerMarker1Input.focus();
             }
         })();
+        return playerName1, playerName2, playerMarker1, playerMarker2;
     });
   
     const gameCell = (function(){
@@ -86,13 +91,37 @@
     })();
 
     const gameLogic = (function(){
+
         //gameLogic functions go here
-        function initGame //TODO for initialising game
-        function placeMark //TODO for placing marker in cell
-        function checkWin //TODO for checking win condition
-        function checkTie //TODO for checking tie condition
-        function switchPlayer //TODO for switching players turn
-    })();
+        function initGame(){ //TODO for initialising game
+            const playerOne = playerFactory.createPlayer(playerName1,playerMarker1);
+            const playerTwo = playerFactory.createPlayer(playerName2,playerMarker2);
+            const board = GameBoard.getBoard()
+            console.log(board)
+            const firstPlayer = firstMove(playerOne,playerTwo);
+            console.log(`${firstPlayer.name} goes first.`);
+        }
+
+        function firstMove(playerOne, playerTwo){
+            let firstPlayer = playerOne;
+            if (Math.random() > 0.5 ){
+              firstPlayer = playerTwo;
+            }
+            return firstPlayer;
+          }
+                
+        return {initGame}
+        })();
+
+        function checkWin() {
+            //TODO for checking win condition
+        }
+        function checkTie() {
+            //TODO for checking tie condition
+        }
+        function switchPlayer() {
+            //TODO for switching players turn
+        }
   
     //Displaying the gameBoard
     console.log(GameBoard.getBoard());
