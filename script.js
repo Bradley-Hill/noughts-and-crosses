@@ -1,4 +1,5 @@
-  
+(function(){
+
 const playerForm = document.getElementById('player-form');
 
 function validateMarkers(playerMarker1, playerMarker2) {
@@ -32,6 +33,25 @@ playerForm.addEventListener('submit', (event) => {
   const playerMarker2 = playerMarker2Input.value;
   const playerName1 = playerNameInput.value;
   const playerName2 = playerName2Input.value;
+
+  function validateMarkers(playerMarker1, playerMarker2) {
+    let errorMessage;
+
+    if(playerMarker1 === playerMarker2){
+        errorMessage = "Both players cannot have the same Mark. Please choose different Marks.";
+    } else if (playerMarker1 === 'X' && playerMarker2 === 'X'){
+        errorMessage = "Only one player can have the X mark. Please choose different Marks."
+    } else if (playerMarker1 === 'O' && playerMarker2 === 'O'){
+        errorMessage = "Only one player can have the O mark. Please choose different Marks"
+    }
+
+    if(errorMessage){
+        alert(errorMessage);
+        playerMarker1Input.selectedIndex = 0
+        playerMarker2Input.selectedIndex = 0
+        playerMarker1Input.focus();
+    }
+}
 
   validateMarkers(playerMarker1, playerMarker2);
 
@@ -140,39 +160,15 @@ playerForm.addEventListener('submit', (event) => {
             //TODO for switching players turn
         }
   
-    //Displaying the gameBoard
-    console.log(GameBoard.getBoard());
 
-    gameLogic.initGame();
+
+    validateMarkers(playerMarker1, playerMarker2);
+
+    gameLogic.initGame(playerName1, playerName2,playerMarker1, playerMarker2);
+
+    
+})();
+        //Displaying the gameBoard
+        console.log(GameBoard.getBoard());
     console.log(playerOne);
     console.log(playerTwo);
-
-  
-
-
-// const GameBoard = (() {
-//   const rows = 3
-//   const columns = 3
-//   const board = []
-  
-//   for (let i = 0; i < rows; i++) {
-//     board[i] = [];
-//     for (let j = 0; j < columns; j++) {
-//       board[i].push(Cell());
-//     }
-//   }
-
-//   // This will be for the UI to access the board state.
-//   const getBoard = () => board;
-
-//   const placeMarker = (player, column, row)=>{
-//     // add code to check its a valid place/not occupied already
-//     const placeMarker = (player, column, row)=>{
-//         if(areAllCellsFull()){
-//             return "Game Over!"
-//         }
-//         // add code to check its a valid place/not occupied already
-//         const availableCells = board.filter((row)=> row[column].getValue() === 0).map(row => row[column])
-//       };
-//     }
-// })();
