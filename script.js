@@ -107,14 +107,16 @@ playerForm.addEventListener('submit', (event) => {
       return {createPlayer};
     })();
 
-    const gameLogic = (function(){
-      function firstMove(playerOne, playerTwo){
-        let firstPlayer = playerOne;
-        if (Math.random() > 0.5 ){
-          firstPlayer = playerTwo;
-        }
-        return firstPlayer;
+    function firstMove(playerOne, playerTwo){
+      let firstPlayer = playerOne;
+      if (Math.random() > 0.5 ){
+        firstPlayer = playerTwo;
       }
+      return firstPlayer;
+    }
+
+    const gameLogic = (function(){
+
         //gameLogic functions go here
           function initGame(playerName1,playerName2,playerMarker1,playerMarker2){ //TODO for initialising game
             const playerOne = playerFactory.createPlayer(playerName1,playerMarker1);
@@ -140,7 +142,7 @@ playerForm.addEventListener('submit', (event) => {
 
     validateMarkers(playerMarker1, playerMarker2);
 
-    gameLogic.initGame(playerName1, playerName2,playerMarker1, playerMarker2);
+    gameLogic.initGame(playerName1, playerName2,playerMarker1, playerMarker2,firstMove);
 
     
 })();
