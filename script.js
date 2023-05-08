@@ -1,40 +1,57 @@
+  
+const playerForm = document.getElementById('player-form');
 
-    const playerForm = document.getElementById('player-form');
-  
-    playerForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-  
-        const playerMarker1Input = document.getElementById('player1-marker');
-        const playerMarker2Input = document.getElementById('player2-marker');
-        const playerNameInput = document.getElementById('player1-name');
-        const playerName2Input = document.getElementById('player2-name');
-  
-        const playerMarker1 = playerMarker1Input.value;
-        const playerMarker2 = playerMarker2Input.value;
-        const playerName1 = playerName1Input.value;
-        const playerName2 = playerName2Input.value;
-  
-        (function validateMarkers(){
-            let errorMessage;
-  
-            if(playerMarker1 === playerMarker2){
-                errorMessage = "Both players cannot have the same Mark. Please choose different Marks.";
-            } else if (playerMarker1 === 'X' && playerMarker2 === 'X'){
-                errorMessage = "Only one player can have the X mark. Please choose different Marks."
-            } else if (playerMarker1 === 'O' && playerMarker2 === 'O'){
-                errorMessage = "Only one player can have the O mark. Please choose different Marks"
-            }
-  
-            if(errorMessage){
-                alert(errorMessage);
-                playerMarker1Input.selectedIndex = 0
-                playerMarker2Input.selectedIndex = 0
-                playerMarker1Input.focus();
-            }
-        })();
-        return playerName1, playerName2, playerMarker1, playerMarker2;
-    });
-  
+function validateMarkers(playerMarker1, playerMarker2) {
+    let errorMessage;
+
+    if(playerMarker1 === playerMarker2){
+        errorMessage = "Both players cannot have the same Mark. Please choose different Marks.";
+    } else if (playerMarker1 === 'X' && playerMarker2 === 'X'){
+        errorMessage = "Only one player can have the X mark. Please choose different Marks."
+    } else if (playerMarker1 === 'O' && playerMarker2 === 'O'){
+        errorMessage = "Only one player can have the O mark. Please choose different Marks"
+    }
+
+    if(errorMessage){
+        alert(errorMessage);
+        playerMarker1Input.selectedIndex = 0
+        playerMarker2Input.selectedIndex = 0
+        playerMarker1Input.focus();
+    }
+}
+
+playerForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const playerMarker1Input = document.getElementById('player1-marker');
+  const playerMarker2Input = document.getElementById('player2-marker');
+  const playerNameInput = document.getElementById('player1-name');
+  const playerName2Input = document.getElementById('player2-name');
+
+  const playerMarker1 = playerMarker1Input.value;
+  const playerMarker2 = playerMarker2Input.value;
+  const playerName1 = playerNameInput.value;
+  const playerName2 = playerName2Input.value;
+
+  validateMarkers(playerMarker1, playerMarker2);
+
+  const initGame = (() => {
+    const playerOne = playerFactory.createPlayer(playerName1, playerMarker1);
+    const playerTwo = playerFactory.createPlayer(playerName2, playerMarker2);
+    const board = GameBoard.getBoard()
+    console.log(board)
+    const firstPlayer = firstMove(playerOne, playerTwo);
+    console.log(`${firstPlayer.name} goes first.`);
+
+    return () => {
+      console.log(playerOne);
+      console.log(playerTwo);
+    }
+  })();
+
+  initGame();
+});
+    
     const gameCell = (function(){
       const Cell = () => {
         const state = {
@@ -110,7 +127,7 @@
             return firstPlayer;
           }
                 
-        return {initGame}
+        return {initGame,checkWin,checkTie,switchPlayer}
         })();
 
         function checkWin() {
@@ -125,6 +142,11 @@
   
     //Displaying the gameBoard
     console.log(GameBoard.getBoard());
+
+    gameLogic.initGame();
+    console.log(playerOne);
+    console.log(playerTwo);
+
   
 
 
