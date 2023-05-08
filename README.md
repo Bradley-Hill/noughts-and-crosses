@@ -11,3 +11,6 @@ Added validateMarkers function and eventlistener for the validation of teh form 
 started gameLogic function, initGame function is mostly finished but may need a few more methods added. 
 - 05/05/2023
 
+Spent a while changing order of functions and the IIFE's and changing the different scopes and closures etc, still not quite getting it right but I am understanding closures and encapsulating functions better. And what to return from them! - 07/05/2023
+
+ - 08/05/2023
