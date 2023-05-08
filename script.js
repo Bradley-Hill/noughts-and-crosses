@@ -108,9 +108,15 @@ playerForm.addEventListener('submit', (event) => {
     })();
 
     const gameLogic = (function(){
-
+      function firstMove(playerOne, playerTwo){
+        let firstPlayer = playerOne;
+        if (Math.random() > 0.5 ){
+          firstPlayer = playerTwo;
+        }
+        return firstPlayer;
+      }
         //gameLogic functions go here
-          function initGame(){ //TODO for initialising game
+          function initGame(playerName1,playerName2,playerMarker1,playerMarker2){ //TODO for initialising game
             const playerOne = playerFactory.createPlayer(playerName1,playerMarker1);
             const playerTwo = playerFactory.createPlayer(playerName2,playerMarker2);
             const board = GameBoard.getBoard()
@@ -118,17 +124,6 @@ playerForm.addEventListener('submit', (event) => {
             const firstPlayer = firstMove(playerOne,playerTwo);
             console.log(`${firstPlayer.name} goes first.`);
         }
-
-        function firstMove(playerOne, playerTwo){
-          let firstPlayer = playerOne;
-          if (Math.random() > 0.5 ){
-            firstPlayer = playerTwo;
-          }
-          return firstPlayer;
-        }
-                
-        return {initGame,checkWin,checkTie,switchPlayer,firstMove}
-        })();
 
         function checkWin() {
             //TODO for checking win condition
@@ -140,7 +135,8 @@ playerForm.addEventListener('submit', (event) => {
             //TODO for switching players turn
         }
   
-
+        return {initGame,checkWin,checkTie,switchPlayer,firstMove}
+      })();
 
     validateMarkers(playerMarker1, playerMarker2);
 
