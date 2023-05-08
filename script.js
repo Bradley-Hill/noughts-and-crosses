@@ -110,7 +110,7 @@ playerForm.addEventListener('submit', (event) => {
     const gameLogic = (function(){
 
         //gameLogic functions go here
-        function initGame(){ //TODO for initialising game
+          function initGame(){ //TODO for initialising game
             const playerOne = playerFactory.createPlayer(playerName1,playerMarker1);
             const playerTwo = playerFactory.createPlayer(playerName2,playerMarker2);
             const board = GameBoard.getBoard()
@@ -120,14 +120,14 @@ playerForm.addEventListener('submit', (event) => {
         }
 
         function firstMove(playerOne, playerTwo){
-            let firstPlayer = playerOne;
-            if (Math.random() > 0.5 ){
-              firstPlayer = playerTwo;
-            }
-            return firstPlayer;
+          let firstPlayer = playerOne;
+          if (Math.random() > 0.5 ){
+            firstPlayer = playerTwo;
           }
+          return firstPlayer;
+        }
                 
-        return {initGame,checkWin,checkTie,switchPlayer}
+        return {initGame,checkWin,checkTie,switchPlayer,firstMove}
         })();
 
         function checkWin() {
