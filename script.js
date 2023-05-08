@@ -34,25 +34,6 @@ playerForm.addEventListener('submit', (event) => {
   const playerName1 = playerNameInput.value;
   const playerName2 = playerName2Input.value;
 
-  function validateMarkers(playerMarker1, playerMarker2) {
-    let errorMessage;
-
-    if(playerMarker1 === playerMarker2){
-        errorMessage = "Both players cannot have the same Mark. Please choose different Marks.";
-    } else if (playerMarker1 === 'X' && playerMarker2 === 'X'){
-        errorMessage = "Only one player can have the X mark. Please choose different Marks."
-    } else if (playerMarker1 === 'O' && playerMarker2 === 'O'){
-        errorMessage = "Only one player can have the O mark. Please choose different Marks"
-    }
-
-    if(errorMessage){
-        alert(errorMessage);
-        playerMarker1Input.selectedIndex = 0
-        playerMarker2Input.selectedIndex = 0
-        playerMarker1Input.focus();
-    }
-}
-
   validateMarkers(playerMarker1, playerMarker2);
 
   const initGame = (() => {
@@ -95,8 +76,7 @@ playerForm.addEventListener('submit', (event) => {
       return {
         Cell
       };
-  
-    })();
+      })();
   
     //Creating Gameboard function
     const GameBoard = (function() {
