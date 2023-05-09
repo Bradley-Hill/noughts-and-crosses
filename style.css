@@ -13,7 +13,7 @@ div {
 section {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .grid-container {
@@ -28,5 +28,11 @@ div.cell {
   text-align: center;
   width: 50px;
   height: 50px;
-  /* padding: 20px; */
+  padding: 20px;
+  border: 5px solid black;
+  transition: ease-in-out 0.3s;
+}
+
+div.cell:hover {
+  transform: scale(1.15);
 }
