@@ -1,6 +1,7 @@
 (function(){
 
 const playerForm = document.getElementById('player-form');
+const gridContainer = document.getElementById('grid-container');
 
 function validateMarkers(playerMarker1, playerMarker2) {
     let errorMessage;
@@ -36,7 +37,7 @@ playerForm.addEventListener('submit', (event) => {
 
   validateMarkers(playerMarker1, playerMarker2);
 
-  const initGame = (() => {
+   const initGame = (() => {
     const playerOne = playerFactory.createPlayer(playerName1, playerMarker1);
     const playerTwo = playerFactory.createPlayer(playerName2, playerMarker2);
     const board = GameBoard.getBoard()
@@ -116,19 +117,41 @@ playerForm.addEventListener('submit', (event) => {
     }
 
     const gameLogic = (function(){
+      //gameLogic functions go here
 
-        //gameLogic functions go here
-          function initGame(playerName1,playerName2,playerMarker1,playerMarker2){ //TODO for initialising game
+      let currentPlayer = firstPlayer
+
+        
+        // for initialising game
+          function initGame(playerName1,playerName2,playerMarker1,playerMarker2){ 
             const playerOne = playerFactory.createPlayer(playerName1,playerMarker1);
             const playerTwo = playerFactory.createPlayer(playerName2,playerMarker2);
             const board = GameBoard.getBoard();
-            console.log(board);
             const firstPlayer = firstMove(playerOne,playerTwo);
             console.log(`${firstPlayer.name} goes first.`);
+            currentPlayer = firstPlayer
+            return firstPlayer;
         }
 
-        function placeMarker(){
+        function placeMarker(row, col){
           //TODO for player to place a marker
+          const board = GameBoard.getBoard();
+          const cell = board[row][col];
+          //TODO add code to place currentPlayer marker in cell
+        }
+
+        const board =GameBoard.getBoard();
+        for(let row = 0; row < board.length; row++){
+          for (let col = 0; col < board[row].length; col++){
+            const cell = board[row][col];
+            const cellElement = document.createElement('div');
+            cellElement.classList.add('cell');
+            cellElement.id = `cell-${row}-${col}`;
+            cellElement.addEventListener('click', ()=>{
+              placeMarker(row,col);
+            });
+            gridContainer.appendChild(cellElement);
+          }
         }
 
         function checkWin() {
@@ -138,10 +161,11 @@ playerForm.addEventListener('submit', (event) => {
             //TODO for checking tie condition
         }
         function switchPlayer() {
-            //TODO for switching players turn
+            // for switching players turn
+            currentPlayer = (currentPlayer === playerOne) ? playerOne : playerTwo; 
         }
   
-        return {initGame,checkWin,checkTie,switchPlayer,firstMove};
+        return {initGame,checkWin,checkTie,switchPlayer,firstMove,placeMarker};
       })();
 
     validateMarkers(playerMarker1, playerMarker2);
