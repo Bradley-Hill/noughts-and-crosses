@@ -127,6 +127,10 @@ playerForm.addEventListener('submit', (event) => {
             console.log(`${firstPlayer.name} goes first.`);
         }
 
+        function placeMarker(){
+          //TODO for player to place a marker
+        }
+
         function checkWin() {
             //TODO for checking win condition
         }
