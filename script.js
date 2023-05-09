@@ -89,8 +89,8 @@ playerForm.addEventListener('submit', (event) => {
           board[i] = [];
           for (let j = 0; j < Columns; j++){
               board[i][j] = Cell();
-          };
-      };
+          }
+      }
   
       const getBoard = () => board;
   
@@ -121,8 +121,8 @@ playerForm.addEventListener('submit', (event) => {
           function initGame(playerName1,playerName2,playerMarker1,playerMarker2){ //TODO for initialising game
             const playerOne = playerFactory.createPlayer(playerName1,playerMarker1);
             const playerTwo = playerFactory.createPlayer(playerName2,playerMarker2);
-            const board = GameBoard.getBoard()
-            console.log(board)
+            const board = GameBoard.getBoard();
+            console.log(board);
             const firstPlayer = firstMove(playerOne,playerTwo);
             console.log(`${firstPlayer.name} goes first.`);
         }
@@ -137,7 +137,7 @@ playerForm.addEventListener('submit', (event) => {
             //TODO for switching players turn
         }
   
-        return {initGame,checkWin,checkTie,switchPlayer,firstMove}
+        return {initGame,checkWin,checkTie,switchPlayer,firstMove};
       })();
 
     validateMarkers(playerMarker1, playerMarker2);
