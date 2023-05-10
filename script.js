@@ -7,6 +7,18 @@
   //TODO:GameBoard FUNCTION(IIFE)
   const gameBoard = (function(){
     //TODO:array of 2D 3x3 Grid for cells
+    const grid = [];
+
+    for(let i=0; i<grid.length; i++) {
+      for(let j; j<grid[i].length; j++) {
+        const cell = {
+          row:i,
+          col:j,
+          value:"",
+        };
+        grid.push(cell);
+        }
+      }
 
     //TODO:FUNCTION initalizes GameBoard
 
