@@ -9,8 +9,8 @@
     //TODO:array of 2D 3x3 Grid for cells
     const grid = [];
 
-    for(let i=0; i<grid.length; i++) {
-      for(let j; j<grid[i].length; j++) {
+    for(let i=0; i < 3; i++) {
+      for(let j; j < 3; j++) {
         const cell = {
           row:i,
           col:j,
