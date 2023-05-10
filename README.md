@@ -14,3 +14,5 @@ started gameLogic function, initGame function is mostly finished but may need a 
 Spent a while changing order of functions and the IIFE's and changing the different scopes and closures etc, still not quite getting it right but I am understanding closures and encapsulating functions better. And what to return from them! - 07/05/2023
 
 Moved the firstMove function into globalscope, it will only be temporary I hope, but its at least got the game logic flowing.now to look at the other game logic functions. - 08/05/2023
+
+Starting the Javascript again from scratch, I aim to be more structured in my approach and more modular in my design, and for better clarity and lisibility of the code. - 10/05/2023
