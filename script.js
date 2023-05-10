@@ -1,180 +1,70 @@
 (function(){
 
-const playerForm = document.getElementById('player-form');
-const gridContainer = document.getElementById('grid-container');
+  //TODO:Define elements from HTML for Script
+  const playerForm = document.getElementById('player-form');
+  const gridContainer = document.getElementById('grid-container');
 
-function validateMarkers(playerMarker1, playerMarker2) {
-    let errorMessage;
+  //TODO:GameBoard FUNCTION(IIFE)
+  const gameBoard = (function(){
+    //TODO:array of 2D 3x3 Grid for cells
 
-    if(playerMarker1 === playerMarker2){
-        errorMessage = "Both players cannot have the same Mark. Please choose different Marks.";
-    } else if (playerMarker1 === 'X' && playerMarker2 === 'X'){
-        errorMessage = "Only one player can have the X mark. Please choose different Marks."
-    } else if (playerMarker1 === 'O' && playerMarker2 === 'O'){
-        errorMessage = "Only one player can have the O mark. Please choose different Marks"
-    }
+    //TODO:FUNCTION initalizes GameBoard
 
-    if(errorMessage){
-        alert(errorMessage);
-        playerMarker1Input.selectedIndex = 0
-        playerMarker2Input.selectedIndex = 0
-        playerMarker1Input.focus();
-    }
-}
+    //TODO:FUNCTION to update GameBoard after players turn
 
-playerForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+    //TODO:FUNCTION to verify if chosen cell is empty
 
-  const playerMarker1Input = document.getElementById('player1-marker');
-  const playerMarker2Input = document.getElementById('player2-marker');
-  const playerNameInput = document.getElementById('player1-name');
-  const playerName2Input = document.getElementById('player2-name');
-
-  const playerMarker1 = playerMarker1Input.value;
-  const playerMarker2 = playerMarker2Input.value;
-  const playerName1 = playerNameInput.value;
-  const playerName2 = playerName2Input.value;
-
-  validateMarkers(playerMarker1, playerMarker2);
-
-   const initGame = (() => {
-    const playerOne = playerFactory.createPlayer(playerName1, playerMarker1);
-    const playerTwo = playerFactory.createPlayer(playerName2, playerMarker2);
-    const board = GameBoard.getBoard()
-    console.log(board)
-    const firstPlayer = firstMove(playerOne, playerTwo);
-    console.log(`${firstPlayer.name} goes first.`);
-
-    return () => {
-      console.log(playerOne);
-      console.log(playerTwo);
-    }
+    //TODO:FUNCTION to check if all cells are full/marked
+    
+    return {
+      //TODO:Expose public methods and properties
+    };
   })();
 
-  initGame();
-});
-    
-    const gameCell = (function(){
-      const Cell = () => {
-        const state = {
-            value: 0
-        };
-  
-        const setValue = (newValue) => {
-            state.value = newValue;
-        };
-  
-        const getValue = () => {
-            return state.value;
-        };
-  
-        return {
-            setValue, 
-            getValue
-        };
-      };
-  
-      return {
-        Cell
-      };
-      })();
-  
-    //Creating Gameboard function
-    const GameBoard = (function() {
-      const {Cell} = gameCell;
-      const Rows = 3
-      const Columns = 3
-      const board = []
-  
-      for (let i = 0; i < Rows; i++){
-          board[i] = [];
-          for (let j = 0; j < Columns; j++){
-              board[i][j] = Cell();
-          }
-      }
-  
-      const getBoard = () => board;
-  
-      return {getBoard};
-    })();
-  
-    const playerFactory = (function(){
-      const createPlayer = (name,marker) => {
-        if (marker !== 'X' && marker !== 'O'){
-            throw new Error('Invalid marker, must be either "X" or "O"');
-        }
-        return{name,marker};
-      };
-      return {createPlayer};
-    })();
+  //TODO:PlayerModule FUNCTION(IIFE)
+  const playerModule = (function(){
+    //TODO:Factory Functionto create player objects with Name and Marker
 
-    function firstMove(playerOne, playerTwo){
-      let firstPlayer = playerOne;
-      if (Math.random() > 0.5 ){
-        firstPlayer = playerTwo;
-      }
-      return firstPlayer;
-    }
+    //TODO:Function to get players name from form
 
-    const gameLogic = (function(){
-      //gameLogic functions go here
+    //TODO:Function to get players marker from form
 
-      let currentPlayer = firstPlayer
+    return {
+      //TODO:Expose public methods and properties
+    };
+  })();
 
-        
-        // for initialising game
-          function initGame(playerName1,playerName2,playerMarker1,playerMarker2){ 
-            const playerOne = playerFactory.createPlayer(playerName1,playerMarker1);
-            const playerTwo = playerFactory.createPlayer(playerName2,playerMarker2);
-            const board = GameBoard.getBoard();
-            const firstPlayer = firstMove(playerOne,playerTwo);
-            console.log(`${firstPlayer.name} goes first.`);
-            currentPlayer = firstPlayer
-            return firstPlayer;
-        }
+  //TODO:GameModule FUNCTION(IIFE)
+  const gameModule = (function(){
+    //TODO:Function to switch active player
 
-        function placeMarker(row, col){
-          //TODO for player to place a marker
-          const board = GameBoard.getBoard();
-          const cell = board[row][col];
-          //TODO add code to place currentPlayer marker in cell
-        }
+    //TODO:Function to check GameBoard for a win state
 
-        const board =GameBoard.getBoard();
-        for(let row = 0; row < board.length; row++){
-          for (let col = 0; col < board[row].length; col++){
-            const cell = board[row][col];
-            const cellElement = document.createElement('div');
-            cellElement.classList.add('cell');
-            cellElement.id = `cell-${row}-${col}`;
-            cellElement.addEventListener('click', ()=>{
-              placeMarker(row,col);
-            });
-            gridContainer.appendChild(cellElement);
-          }
-        }
+    //TODO:Function to check GameBoard for a tie state(GameOver)
 
-        function checkWin() {
-            //TODO for checking win condition
-        }
-        function checkTie() {
-            //TODO for checking tie condition
-        }
-        function switchPlayer() {
-            // for switching players turn
-            currentPlayer = (currentPlayer === playerOne) ? playerOne : playerTwo; 
-        }
-  
-        return {initGame,checkWin,checkTie,switchPlayer,firstMove,placeMarker};
-      })();
+    return {
+      //TODO:Expose public methods and properties
+    };
+  })();
 
-    validateMarkers(playerMarker1, playerMarker2);
+  //TODO:UIModule FUNCTION(IIFE)
+  const uiModule = (function(){
+    //TODO:Event listener for form submit click.
+      //TODO:Validation checks on form(markers)
 
-    gameLogic.initGame(playerName1, playerName2,playerMarker1, playerMarker2,firstMove);
+    //TODO:Event listener for cell selection click.
 
-    
+    //TODO:FUNCTION to handle user clicks on cells
+
+    //TODO:FUNCTION to display GameBoard to user.
+
+    //TODO:FUNCTION to display Winner to user.
+
+    //TODO:FUNCTION to display current player to user.
+
+    return {
+      //TODO:Expose public methods and properties
+    };
+  })();
+
 })();
-        //Displaying the gameBoard
-        console.log(GameBoard.getBoard());
-    console.log(playerOne);
-    console.log(playerTwo);
