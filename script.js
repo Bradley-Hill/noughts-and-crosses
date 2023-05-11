@@ -10,15 +10,22 @@
     const grid = [];
 
     for(let i=0; i < 3; i++) {
-      for(let j; j < 3; j++) {
+      for(let j=0; j < 3; j++) {
         const cell = {
           row:i,
           col:j,
           value:"",
         };
         grid.push(cell);
-        }
+        const div = document.createElement("div")
+        div.classList.add('cell')
+        div.setAttribute("data-row", cell.row);
+        div.setAttribute("data-col", cell.col);
+        div.textContent = ""
+        gridContainer.appendChild(div);
       }
+    }
+    
 
     //TODO:FUNCTION initalizes GameBoard
 
