@@ -133,12 +133,11 @@
 
       //LEAVING SPACE for any extra steps needed in initilisation
 
-      
+
     });
     
     playerForm.addEventListener('submit',function(event){
       event.preventDefault();
-      console.log("submit");
       initGame();
     });
 
