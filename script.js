@@ -32,12 +32,9 @@
       }
     }
     function getIndex(row, col) {
-      return row  + col;
+      return row * 3  + col;
     }
   
-    //TODO:FUNCTION initalizes GameBoard
-      //******Not necessary???******
-
     //TODO:FUNCTION to update GameBoard after players turn
 
     //TODO:FUNCTION to verify if chosen cell is empty
