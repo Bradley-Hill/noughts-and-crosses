@@ -133,10 +133,7 @@
 
       //LEAVING SPACE for any extra steps needed in initilisation
 
-      return () => {
-        console.log(playerOne);
-        console.log(playerTwo);
-      };
+      
     });
     
     playerForm.addEventListener('submit',function(event){
