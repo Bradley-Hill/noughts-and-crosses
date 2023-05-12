@@ -118,74 +118,67 @@
     };
   })();
 
-  //TODO:UIModule FUNCTION(IIFE)
-  const uiModule = (function() {
-    let playerOne;
-    let playerTwo;
-  
-    function initGame() {
-      const { playerOneName, playerTwoName, playerOneMarker, playerTwoMarker } = playerModule.getPlayerNames();
-  
-      playerOne = playerModule.createPlayer(playerOneName, playerOneMarker);
-      playerTwo = playerModule.createPlayer(playerTwoName, playerTwoMarker);
-  
-      const firstPlayer = gameModule.firstMove(playerOne, playerTwo);
-      console.log(`${firstPlayer.name} goes first!`);
-      console.log(firstPlayer.marker);
-  
-      gameModule.setCurrentPlayer(firstPlayer);
-    }
-  
-    playerForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      initGame();
-    });
-    
-    playerForm.addEventListener('submit',function(event){
-      event.preventDefault();
-      initGame(gameModule.getCurrentPlayer());
-    });
+//TODO:UIModule FUNCTION(IIFE)
+const uiModule = (function() {
+  let playerOne;
+  let playerTwo;
 
-    //FUNCTION to display gameBoard to User.
-    const displayGameBoard = () => {
-      console.log(gameBoard.getGameBoard());
-    }
+  function initGame() {
+    const { playerOneName, playerTwoName, playerOneMarker, playerTwoMarker } = playerModule.getPlayerNames();
 
-    const board = gameBoard.getGameBoard();
-console.log(board);
+    playerOne = playerModule.createPlayer(playerOneName, playerOneMarker);
+    playerTwo = playerModule.createPlayer(playerTwoName, playerTwoMarker);
 
-    //TODO:Event listener for cell selection click.
-    const handleCellClick = function(event) {
-      const clickedCell = event.target;
-      const row = parseInt(clickedCell.getAttribute("data-row"));
-      const col = parseInt(clickedCell.getAttribute("data-col"));
-      const currentPlayer = gameModule.getCurrentPlayer();
-  
-      const cell = gameBoard.getGameBoard()[gameBoard.getIndex(row, col)];
-      cell.value = currentPlayer.marker;
-      clickedCell.textContent = currentPlayer.marker;
-  
-      gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
-  
-      console.log(`Current player: ${gameModule.getCurrentPlayer().name}`);
-      console.log(`Current player's marker: ${gameModule.getCurrentPlayer().marker}`);
-    };
-  
-    gridContainer.addEventListener("click", handleCellClick);
-   
-    })();
+    const firstPlayer = gameModule.firstMove(playerOne, playerTwo);
+    console.log(`${firstPlayer.name} goes first!`);
+    console.log(firstPlayer.marker);
 
-    //TODO:FUNCTION to handle user clicks on cells
+    gameModule.setCurrentPlayer(firstPlayer);
+  }
 
-    //TODO:FUNCTION to display Winner to user.
+  playerForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    initGame();
+  });
 
-    //TODO:FUNCTION to display current player to user.
+  //FUNCTION to display gameBoard to User.
+  const displayGameBoard = () => {
+    console.log(gameBoard.getGameBoard());
+  }
 
-    return {
-      //TODO:Expose public methods and properties
-      displayGameBoard: displayGameBoard,
-      initGame: initGame,
+  const board = gameBoard.getGameBoard();
+  console.log(board);
 
-    };
+  //TODO:Event listener for cell selection click.
+  const handleCellClick = function(event) {
+    const clickedCell = event.target;
+    const row = parseInt(clickedCell.getAttribute("data-row"));
+    const col = parseInt(clickedCell.getAttribute("data-col"));
+    const currentPlayer = gameModule.getCurrentPlayer();
+
+    const cell = gameBoard.getGameBoard()[gameBoard.getIndex(row, col)];
+    cell.value = currentPlayer.marker;
+    clickedCell.textContent = currentPlayer.marker;
+
+    gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
+
+    console.log(`Current player: ${gameModule.getCurrentPlayer().name}`);
+    console.log(`Current player's marker: ${gameModule.getCurrentPlayer().marker}`);
+  };
+
+  gridContainer.addEventListener("click", handleCellClick);
+
+  //TODO:FUNCTION to handle user clicks on cells
+
+  //TODO:FUNCTION to display Winner to user.
+
+  //TODO:FUNCTION to display current player to user.
+
+  return {
+    //TODO:Expose public methods and properties
+    displayGameBoard: displayGameBoard,
+    initGame: initGame,
+  };
+})();
 
 })();
