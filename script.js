@@ -107,7 +107,6 @@
     function checkWinState(){
       const gameBoardArray = gameBoard.getGameBoard();
 
-      //Check the rows
       for(let row = 0; row < 3; row++){
         if(
           gameBoardArray[row*3].value !== "" &&
@@ -117,7 +116,7 @@
           return true;
         }
       }
-      //check columns
+
       for (let col = 0; col < 3; col++){
       if(
         gameBoardArray[col].value !== "" &&
@@ -127,7 +126,7 @@
         return true;
       }
     }
-    //check diagonal
+
     if(
       gameBoardArray[0].value !== "" &&
       gameBoardArray[0].value === gameBoardArray[4].value &&
@@ -138,25 +137,25 @@
     return false;
   }
 
-  //FUNCTION for checking gameState
-  function checkGameState(){
-    if (checkWinState()){
-      console.log(`${currentPlayer.name} wins!`)
-      //TODO What to do in the event of a win state! Reset board,display winner etc...
-    } else {
-      //TODO: Check for tie state
-    }
+//FUNCTION for checking gameState
+function checkGameState() {
+  const isWin = checkWinState();
+  if (isWin) {
+    return currentPlayer;
+  } else {
+    //TODO Check for tie state otherwise return null if no winner and no tie yet
+    return null;
   }
+}
 
-
-    return {
-      //TODO:Expose public methods and properties
-      firstMove,
-      getCurrentPlayer: ()=> currentPlayer,
-      setCurrentPlayer,
-      checkGameState,
-    };
-  })();
+return {
+  //TODO:Expose public methods and properties
+  firstMove,
+  getCurrentPlayer: () => currentPlayer,
+  setCurrentPlayer,
+  checkGameState,
+};
+})();
 
 //TODO:UIModule FUNCTION(IIFE)
 const uiModule = (function() {
@@ -205,10 +204,19 @@ if(cell.value !== ""){
     cell.value = currentPlayer.marker;
     clickedCell.textContent = currentPlayer.marker;
 
-    gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
-    activePlayer.textContent = gameModule.getCurrentPlayer().name;
+    gameModule.checkGameState();
+    const winner = gameModule.checkGameState();
 
-    checkGameState();
+    if(winner){
+      gameModule.setCurrentPlayer(winner);
+      console.log(`${winner.name} wins!`);
+      //other actiions to be performedon a win HERE!!!!
+      } else {
+        gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
+        activePlayer.textContent = gameModule.getCurrentPlayer().name;
+      }
+
+    gameModule.checkGameState();
 
     console.log(`Current player: ${gameModule.getCurrentPlayer().name}`);
     console.log(`Current player's marker: ${gameModule.getCurrentPlayer().marker}`);
