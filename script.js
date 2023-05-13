@@ -121,38 +121,47 @@
     }
 
     //TODO:Function to check GameBoard for a win state
-    function checkWinState(){
+    function checkWinState() {
       const gameBoardArray = gameBoard.getGameBoard();
-
-      for(let row = 0; row < 3; row++){
-        if(
-          gameBoardArray[row*3].value !== "" &&
-          gameBoardArray[row*3].value === gameBoardArray[row*3 + 1].value &&
-          gameBoardArray[row*3].value === gameBoardArray[row*3 + 2].value
-        ){
+    
+      for (let row = 0; row < 3; row++) {
+        if (
+          gameBoardArray[row * 3].value !== "" &&
+          gameBoardArray[row * 3].value === gameBoardArray[row * 3 + 1].value &&
+          gameBoardArray[row * 3].value === gameBoardArray[row * 3 + 2].value
+        ) {
           return true;
         }
       }
-
-      for (let col = 0; col < 3; col++){
-      if(
-        gameBoardArray[col].value !== "" &&
-        gameBoardArray[col].value === gameBoardArray[col + 3].value &&
-        gameBoardArray[col + 3].value === gameBoardArray[col + 6].value
-      ){
+    
+      for (let col = 0; col < 3; col++) {
+        if (
+          gameBoardArray[col].value !== "" &&
+          gameBoardArray[col].value === gameBoardArray[col + 3].value &&
+          gameBoardArray[col + 3].value === gameBoardArray[col + 6].value
+        ) {
+          return true;
+        }
+      }
+    
+      if (
+        gameBoardArray[0].value !== "" &&
+        gameBoardArray[0].value === gameBoardArray[4].value &&
+        gameBoardArray[4].value === gameBoardArray[8].value
+      ) {
         return true;
       }
+    
+      if (
+        gameBoardArray[2].value !== "" &&
+        gameBoardArray[2].value === gameBoardArray[4].value &&
+        gameBoardArray[4].value === gameBoardArray[6].value
+      ) {
+        return true;
+      }
+    
+      return false;
     }
-
-    if(
-      gameBoardArray[0].value !== "" &&
-      gameBoardArray[0].value === gameBoardArray[4].value &&
-      gameBoardArray[4].value === gameBoardArray[8].value
-    ){
-      return true;
-    }
-    return false;
-  }
 
 //FUNCTION for checking gameState
 function checkGameState() {
