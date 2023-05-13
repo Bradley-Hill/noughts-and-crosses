@@ -31,18 +31,35 @@
       return row * 3  + col;
     }
   
-    //TODO:FUNCTION to update GameBoard after players turn
-
-    //TODO:FUNCTION to verify if chosen cell is empty
-
-    //TODO:FUNCTION to check if all cells are full/marked
+    //TODO:Reset the Board
+    const resetBoard = function () {
+      gridContainer.innerHTML = '';
+      
+      gameBoard.getGameBoard().forEach(cell => {
+        cell.value = '';
+      });
+      
+      for(let i=0; i < 3; i++) {
+        for(let j=0; j < 3; j++) {
+          const cell = gameBoard.getGameBoard()[gameBoard.getIndex(i, j)];
+          const div = document.createElement('div');        
+          div.classList.add('cell')
+          div.setAttribute("data-row", cell.row);
+          div.setAttribute("data-col", cell.col);
+          div.textContent = ""
+          gridContainer.appendChild(div);
+  
+        }
+      }
+      return grid;
+    }
  
     return {
       //TODO:Expose public methods and properties
       getGameBoard: function() {
         return grid
       },
-      getIndex: getIndex,
+      getIndex: getIndex,resetBoard,
     };
   })();
 
@@ -210,7 +227,11 @@ if(cell.value !== ""){
     if(winner){
       gameModule.setCurrentPlayer(winner);
       console.log(`${winner.name} wins!`);
+      gameBoard.resetBoard();
       //other actiions to be performedon a win HERE!!!!
+
+      console.log("Game board after reset:");
+      console.log(gameBoard.getGameBoard());
       } else {
         gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
         activePlayer.textContent = gameModule.getCurrentPlayer().name;
