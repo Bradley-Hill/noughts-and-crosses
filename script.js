@@ -166,10 +166,21 @@
 //FUNCTION for checking gameState
 function checkGameState() {
   const isWin = checkWinState();
+  const gameBoardArray = gameBoard.getGameBoard();
+  let count = 0;
+  for (let i = 0; i < gameBoardArray.length; i++) {
+    if (gameBoardArray[i].value !== '') {
+      count++;
+    }
+  }
+  const isTie = count === gameBoardArray.length && !isWin;
+
   if (isWin) {
     return currentPlayer;
+  } else if (isTie) {
+    gameBoard.resetBoard();
+    return null;
   } else {
-    //TODO Check for tie state otherwise return null if no winner and no tie yet
     return null;
   }
 }
@@ -230,7 +241,7 @@ if(cell.value !== ""){
     cell.value = currentPlayer.marker;
     clickedCell.textContent = currentPlayer.marker;
 
-    gameModule.checkGameState();
+    // gameModule.checkGameState(); ------REMOVE????
     const winner = gameModule.checkGameState();
 
     if(winner){
@@ -242,10 +253,18 @@ if(cell.value !== ""){
       console.log("Game board after reset:");
       console.log(gameBoard.getGameBoard());
       } else {
+        const isTie = gameModule.checkGameState() === null;
+        if (isTie) {
+          console.log("It's a tie!");
+          gameBoard.resetBoard();
+
+          console.log("Game board after reset:");
+          console.log(gameBoard.getGameBoard());
+        } else {
         gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
         activePlayer.textContent = gameModule.getCurrentPlayer().name;
       }
-
+    }
     gameModule.checkGameState();
 
     console.log(`Current player: ${gameModule.getCurrentPlayer().name}`);
