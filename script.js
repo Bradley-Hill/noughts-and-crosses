@@ -153,6 +153,12 @@ const uiModule = (function() {
     const currentPlayer = gameModule.getCurrentPlayer();
 
     const cell = gameBoard.getGameBoard()[gameBoard.getIndex(row, col)];
+
+if(cell.value !== ""){
+  console.log("Cell already filled.Choose an unoccupied cell.");
+  return;
+}
+
     cell.value = currentPlayer.marker;
     clickedCell.textContent = currentPlayer.marker;
 
@@ -164,8 +170,6 @@ const uiModule = (function() {
   };
 
   gridContainer.addEventListener("click", handleCellClick);
-
-  //TODO:FUNCTION to handle user clicks on cells
 
   //TODO:FUNCTION to display Winner to user.
 
