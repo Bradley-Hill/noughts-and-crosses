@@ -104,6 +104,29 @@
     }
 
     //TODO:Function to check GameBoard for a win state
+    function checkWinStates(){
+      const gameBoard = gameBoard.getGameBoard();
+
+      //Check the rows
+      for(let row = 0; row < 3; row++){
+        if(
+          gameBoard[row*3].value !== "" &&
+          gameBoard[row*3].value === gameBoard[row*3 + 1].value &&
+          gameBoard[row*3].value === gameBoard[row*3 + 2].value
+        ){
+          return true;
+        }
+      }
+      //check columns
+      if(
+        gameBoard[col].value !== "" &&
+        gameBoard[col].value === gameBoard[col + 3].value &&
+        gameBoard[col + 3].value === gameBoard[col + 6].value
+      ){
+        return true;
+      }
+      return false;
+    }
 
     //TODO:Function to check GameBoard for a tie state(GameOver)
 
