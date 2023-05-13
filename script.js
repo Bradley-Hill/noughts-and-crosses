@@ -105,14 +105,14 @@
 
     //TODO:Function to check GameBoard for a win state
     function checkWinState(){
-      const gameBoard = gameBoard.getGameBoard();
+      const gameBoardArray = gameBoard.getGameBoard();
 
       //Check the rows
       for(let row = 0; row < 3; row++){
         if(
-          gameBoard[row*3].value !== "" &&
-          gameBoard[row*3].value === gameBoard[row*3 + 1].value &&
-          gameBoard[row*3].value === gameBoard[row*3 + 2].value
+          gameBoardArray[row*3].value !== "" &&
+          gameBoardArray[row*3].value === gameBoardArray[row*3 + 1].value &&
+          gameBoardArray[row*3].value === gameBoardArray[row*3 + 2].value
         ){
           return true;
         }
@@ -120,18 +120,18 @@
       //check columns
       for (let col = 0; col < 3; col++){
       if(
-        gameBoard[col].value !== "" &&
-        gameBoard[col].value === gameBoard[col + 3].value &&
-        gameBoard[col + 3].value === gameBoard[col + 6].value
+        gameBoardArray[col].value !== "" &&
+        gameBoardArray[col].value === gameBoardArray[col + 3].value &&
+        gameBoardArray[col + 3].value === gameBoardArray[col + 6].value
       ){
         return true;
       }
     }
     //check diagonal
     if(
-      gameBoard[0].value !== "" &&
-      gameBoard[0].value === gameBoard[4].value &&
-      gameBoard[4].value === gameBoard[6].value
+      gameBoardArray[0].value !== "" &&
+      gameBoardArray[0].value === gameBoardArray[4].value &&
+      gameBoardArray[4].value === gameBoardArray[8].value
     ){
       return true;
     }
