@@ -3,6 +3,7 @@
   //TODO:Define elements from HTML for Script
   const playerForm = document.getElementById('player-form');
   const gridContainer = document.getElementById('grid-container');
+  const activePlayer = document.getElementById('active-player');
 
   //TODO:GameBoard FUNCTION(IIFE)
   const gameBoard = (function(){
