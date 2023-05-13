@@ -118,6 +118,7 @@
         }
       }
       //check columns
+      for (let col = 0; col < 3; col++){
       if(
         gameBoard[col].value !== "" &&
         gameBoard[col].value === gameBoard[col + 3].value &&
@@ -125,9 +126,17 @@
       ){
         return true;
       }
-      return false;
     }
-
+    //check diagonal
+    if(
+      gameBoard[0].value !== "" &&
+      gameBoard[0].value === gameBoard[4].value &&
+      gameBoard[4].value === gameBoard[6].value
+    ){
+      return true;
+    }
+    return false;
+  }
     //TODO:Function to check GameBoard for a tie state(GameOver)
 
     return {
