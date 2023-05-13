@@ -25,10 +25,6 @@
         div.textContent = ""
         gridContainer.appendChild(div);
 
-        div.addEventListener("click", function(){
-          console.log(grid[getIndex(cell.row, cell.col)]);
-          
-        });
       }
     }
     function getIndex(row, col) {
@@ -135,6 +131,7 @@ const uiModule = (function() {
     console.log(firstPlayer.marker);
 
     gameModule.setCurrentPlayer(firstPlayer);
+    activePlayer.textContent = gameModule.getCurrentPlayer().name;
   }
 
   playerForm.addEventListener('submit', function(event) {
@@ -148,7 +145,7 @@ const uiModule = (function() {
   }
 
   const board = gameBoard.getGameBoard();
-  console.log(board);
+
 
   //TODO:Event listener for cell selection click.
   const handleCellClick = function(event) {
@@ -162,6 +159,7 @@ const uiModule = (function() {
     clickedCell.textContent = currentPlayer.marker;
 
     gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
+    activePlayer.textContent = gameModule.getCurrentPlayer().name;
 
     console.log(`Current player: ${gameModule.getCurrentPlayer().name}`);
     console.log(`Current player's marker: ${gameModule.getCurrentPlayer().marker}`);
