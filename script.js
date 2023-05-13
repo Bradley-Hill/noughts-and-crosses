@@ -104,7 +104,7 @@
     }
 
     //TODO:Function to check GameBoard for a win state
-    function checkWinStates(){
+    function checkWinState(){
       const gameBoard = gameBoard.getGameBoard();
 
       //Check the rows
@@ -137,13 +137,24 @@
     }
     return false;
   }
-    //TODO:Function to check GameBoard for a tie state(GameOver)
+
+  //FUNCTION for checking gameState
+  function checkGameState(){
+    if (checkWinState()){
+      console.log(`${currentPlayer.name} wins!`)
+      //TODO What to do in the event of a win state! Reset board,display winner etc...
+    } else {
+      //TODO: Check for tie state
+    }
+  }
+
 
     return {
       //TODO:Expose public methods and properties
       firstMove,
       getCurrentPlayer: ()=> currentPlayer,
       setCurrentPlayer,
+      checkGameState,
     };
   })();
 
@@ -196,6 +207,8 @@ if(cell.value !== ""){
 
     gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
     activePlayer.textContent = gameModule.getCurrentPlayer().name;
+
+    checkGameState();
 
     console.log(`Current player: ${gameModule.getCurrentPlayer().name}`);
     console.log(`Current player's marker: ${gameModule.getCurrentPlayer().marker}`);
