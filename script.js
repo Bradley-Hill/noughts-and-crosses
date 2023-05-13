@@ -144,8 +144,6 @@ const uiModule = (function() {
     console.log(gameBoard.getGameBoard());
   }
 
-  const board = gameBoard.getGameBoard();
-
 
   //TODO:Event listener for cell selection click.
   const handleCellClick = function(event) {
