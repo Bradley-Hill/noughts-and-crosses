@@ -1,13 +1,14 @@
 (function(){
 
-  //TODO:Define elements from HTML for Script
+  // Define elements from HTML for Script
+
   const playerForm = document.getElementById('player-form');
   const gridContainer = document.getElementById('grid-container');
   const activePlayer = document.getElementById('active-player');
 
   //TODO:GameBoard FUNCTION(IIFE)
+
   const gameBoard = (function(){
-    //TODO:array of 2D 3x3 Grid for cells
     const grid = [];
 
     for(let i=0; i < 3; i++) {
@@ -31,7 +32,7 @@
       return row * 3  + col;
     }
   
-    //TODO:Reset the Board
+    // Reset the Board state
     const resetBoard = function () {
       gridContainer.innerHTML = '';
       
@@ -63,9 +64,10 @@
     };
   })();
 
+
   //TODO:PlayerModule FUNCTION(IIFE)
+
   const playerModule = (function(){
-    //Factory Function to create player objects with Name and Marker
     const createPlayer = (name,marker) => {
       if(typeof name !== 'string'){
         throw new Error('Invalid name, try again, with letters this time...')
@@ -103,11 +105,12 @@
     };
   })();
 
-  //TODO:GameModule FUNCTION(IIFE)
-  const gameModule = (function(){
-    //TODO:Function to switch/select active player
-    let currentPlayer;
 
+  //GameModule FUNCTION(IIFE)
+
+  const gameModule = (function(){
+
+    let currentPlayer;
     function firstMove(playerOne, playerTwo){
       let firstPlayer = playerOne;
       if (Math.random() > 0.5 ){
@@ -120,7 +123,7 @@
       currentPlayer = player;
     }
 
-  // TODO: Function to check tie state.
+  // Function to check tie state.
     function checkTieState() {
     let counter = 0
     const grid = gameBoard.getGameBoard();
@@ -140,7 +143,7 @@
   return false;
   }
 
-    //TODO:Function to check GameBoard for a win state
+    // Function to check GameBoard for a win state
     function checkWinState() {
       const gameBoardArray = gameBoard.getGameBoard();
     
@@ -183,8 +186,8 @@
       return false;
     }
 
-//FUNCTION for checking gameState
-function checkGameState() {
+// To see if there is a Draw/Win state on gameBoard.
+    function checkGameState() {
   const isTie = checkTieState();
   if (isTie) {
     gameBoard.resetBoard();
@@ -197,8 +200,7 @@ function checkGameState() {
   if (isWin) {
     return currentPlayer;
   } else {
-    //TODO Check for tie state otherwise return null if no winner and no tie yet
-    return null;
+      return null;
   }
 }
 
@@ -211,7 +213,9 @@ return {
 };
 })();
 
-//TODO:UIModule FUNCTION(IIFE)
+
+// uiModule FUNCTION(IIFE)
+
 const uiModule = (function() {
   let playerOne;
   let playerTwo;
@@ -235,13 +239,12 @@ const uiModule = (function() {
     initGame();
   });
 
-  //FUNCTION to display gameBoard to User.
-  const displayGameBoard = () => {
+    const displayGameBoard = () => {
     console.log(gameBoard.getGameBoard());
   }
 
 
-  //TODO:Event listener for cell selection click.
+  //Event listener for cell selection click.
   const handleCellClick = function(event) {
     const clickedCell = event.target;
     const row = parseInt(clickedCell.getAttribute("data-row"));
@@ -265,7 +268,7 @@ if(cell.value !== ""){
       gameModule.setCurrentPlayer(winner);
       console.log(`${winner.name} wins!`);
       gameBoard.resetBoard();
-      //other actiions to be performedon a win HERE!!!!
+      //other actiions to be performed on a win HERE!!!!
 
       console.log("Game board after reset:");
       console.log(gameBoard.getGameBoard());
@@ -281,10 +284,6 @@ if(cell.value !== ""){
   };
 
   gridContainer.addEventListener("click", handleCellClick);
-
-  //TODO:FUNCTION to display Winner to user.
-
-  //TODO:FUNCTION to display current player to user.
 
   return {
     //TODO:Expose public methods and properties
