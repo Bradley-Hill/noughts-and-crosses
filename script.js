@@ -120,6 +120,26 @@
       currentPlayer = player;
     }
 
+  // TODO: Function to check tie state.
+    function checkTieState() {
+    let counter = 0
+    const grid = gameBoard.getGameBoard();
+
+    for (let i = 0; i < grid.length; i++) {
+    if (grid[i].value === ""){
+    counter++;
+    } 
+  }
+
+    if(counter === 0) {
+    gameBoard.resetBoard();
+    console.log("You Drew, Game Over!")
+    console.log("Board Reset...")
+    return true
+    }
+  return false;
+  }
+
     //TODO:Function to check GameBoard for a win state
     function checkWinState() {
       const gameBoardArray = gameBoard.getGameBoard();
@@ -165,6 +185,14 @@
 
 //FUNCTION for checking gameState
 function checkGameState() {
+  const isTie = checkTieState();
+  if (isTie) {
+    gameBoard.resetBoard();
+    console.log("You Drew! Game Over!");
+    console.log("Board reset...");
+    return null;
+  }
+
   const isWin = checkWinState();
   if (isWin) {
     return currentPlayer;
