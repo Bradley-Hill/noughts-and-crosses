@@ -5,6 +5,12 @@
   const playerForm = document.getElementById('player-form');
   const gridContainer = document.getElementById('grid-container');
   const activePlayer = document.getElementById('active-player');
+  const playerOneMarkerInput = document.getElementById('player1-marker');
+  const playerTwoMarkerInput = document.getElementById('player2-marker');
+  const submitButton = document.getElementById('submit-button');
+
+  playerOneMarkerInput.addEventListener('input', validateMarkers);
+  playerTwoMarkerInput.addEventListener('input', validateMarkers);
 
   //TODO:GameBoard FUNCTION(IIFE)
 
@@ -78,13 +84,14 @@
       return {name, marker};
     };
 
-    function validateMarkers(event){
-      const playerOneMarker = document.getElementById('player1-marker').value;
-      const playerTwoMarker = document.getElementById('player2-marker').value;
-
-      if (playerOneMarker === playerTwoMarker){
-        event.preventDefault();
-        alert('Please select different markers for each player');
+    function validateMarkers() {
+      const playerOneMarker = playerOneMarkerInput.value.toUpperCase();
+      const playerTwoMarker = playerTwoMarkerInput.value.toUpperCase();
+    
+      if (playerOneMarker === playerTwoMarker) {
+        submitButton.disabled = true;
+      } else {
+        submitButton.disabled = false;
       }
     }
 
@@ -231,15 +238,7 @@ const uiModule = (function() {
   let playerOne;
   let playerTwo;
 
-  function initGame(event) {
-    const { playerOneName, playerTwoName, playerOneMarker, playerTwoMarker } = playerModule.getPlayerNames();
-
-    if(!playerModule.validateMarkers(playerTwoMarker, playerOneMarker)){
-      console.log("Invalid marker selection. Please select different markers.");
-    }
-
-    playerOne = playerModule.createPlayer(playerOneName, playerOneMarker);
-    playerTwo = playerModule.createPlayer(playerTwoName, playerTwoMarker);
+  function initGame() {
 
     const firstPlayer = gameModule.firstMove(playerOne, playerTwo);
     console.log(`${firstPlayer.name} goes first!`);
@@ -249,15 +248,24 @@ const uiModule = (function() {
     activePlayer.textContent = gameModule.getCurrentPlayer().name;
   }
 
-  playerForm.addEventListener('submit', function(event) {
-    event.preventDefault();
-    initGame(event);
-  });
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      playerModule.validateMarkers(event);
 
-    const displayGameBoard = () => {
+      const { playerOneName, playerTwoName, playerOneMarker, playerTwoMarker } = playerModule.getPlayerNames();
+
+      playerOne = playerModule.createPlayer(playerOneName, playerOneMarker);
+      playerTwo = playerModule.createPlayer(playerTwoName, playerTwoMarker);
+
+      initGame();
+
+    }
+
+  playerForm.addEventListener('submit', handleFormSubmit);
+
+  const displayGameBoard = () => {
     console.log(gameBoard.getGameBoard());
   }
-
 
   //Event listener for cell selection click.
   const handleCellClick = function(event) {
@@ -268,10 +276,10 @@ const uiModule = (function() {
 
     const cell = gameBoard.getGameBoard()[gameBoard.getIndex(row, col)];
 
-if(cell.value !== ""){
-  console.log("Cell already filled.Choose an unoccupied cell.");
-  return;
-}
+    if(cell.value !== ""){
+      console.log("Cell already filled.Choose an unoccupied cell.");
+      return;
+    }
 
     cell.value = currentPlayer.marker;
     clickedCell.textContent = currentPlayer.marker;
@@ -283,14 +291,14 @@ if(cell.value !== ""){
       gameModule.setCurrentPlayer(winner);
       console.log(`${winner.name} wins!`);
       gameBoard.resetBoard();
-      //other actiions to be performed on a win HERE!!!!
+      //other actions to be performed on a win HERE!!!!
 
       console.log("Game board after reset:");
       console.log(gameBoard.getGameBoard());
-      } else {
-        gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
-        activePlayer.textContent = gameModule.getCurrentPlayer().name;
-      }
+    } else {
+      gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
+      activePlayer.textContent = gameModule.getCurrentPlayer().name;
+    }
 
     gameModule.checkGameState();
 
@@ -302,8 +310,8 @@ if(cell.value !== ""){
 
   return {
     //TODO:Expose public methods and properties
-    displayGameBoard: displayGameBoard,
-    initGame: initGame,
+    displayGameBoard,
+    initGame,
   };
 })();
 
