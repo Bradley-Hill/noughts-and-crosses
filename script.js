@@ -236,8 +236,8 @@ return {
 const uiModule = (function() {
   let playerOne;
   let playerTwo;
-  let playerXScore = 0;
-  let playerYScore = 0;
+  let playerOneScore = 0;
+  let playerTwoScore = 0;
 
   function initGame() {
 
@@ -290,11 +290,12 @@ const uiModule = (function() {
     if(winner){
       gameModule.setCurrentPlayer(winner);
       console.log(`${winner.name} wins!`);
-      if (winner.marker === playerOne.marker){
-        playerXScore++;
+      if (winner === playerOne){
+        playerOneScore++;
       } else {
-        playerYScore++;
+        playerTwoScore++;
       }
+      updateScoreboard();
       //other actions to be performed on a win HERE!!!!
 
       console.log("Game board after reset:");
@@ -315,7 +316,7 @@ const uiModule = (function() {
 
   const updateScoreboard = function(){
     const scoreboardElement = document.getElementById("scoreboard");
-    scoreboardElement.textContent = `Player X Score: ${playerXScore}\nPlayer Y Score: ${playerYScore}\n`
+    scoreboardElement.innerHTML = `${playerOne.name} Score: ${playerOneScore}<br><br>${playerTwo.name} Score: ${playerTwoScore}\n`
   }
 
   return {
