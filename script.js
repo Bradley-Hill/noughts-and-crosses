@@ -79,8 +79,8 @@
     };
 
     function validateMarkers(event){
-      const playerOneMarker = document.getElementById('playerOneMarkerInput').value;
-      const playerTwoMarker = document.getElementById('playerTwoMarkerInput').value;
+      const playerOneMarker = document.getElementById('player1-marker').value;
+      const playerTwoMarker = document.getElementById('player2-marker').value;
 
       if (playerOneMarker === playerTwoMarker){
         event.preventDefault();
@@ -231,7 +231,7 @@ const uiModule = (function() {
   let playerOne;
   let playerTwo;
 
-  function initGame() {
+  function initGame(event) {
     const { playerOneName, playerTwoName, playerOneMarker, playerTwoMarker } = playerModule.getPlayerNames();
 
     if(!playerModule.validateMarkers(playerTwoMarker, playerOneMarker)){
@@ -251,7 +251,7 @@ const uiModule = (function() {
 
   playerForm.addEventListener('submit', function(event) {
     event.preventDefault();
-    initGame();
+    initGame(event);
   });
 
     const displayGameBoard = () => {
