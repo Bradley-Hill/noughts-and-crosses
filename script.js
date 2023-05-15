@@ -78,6 +78,16 @@
       return {name, marker};
     };
 
+    function validateMarkers(event){
+      const playerOneMarker = document.getElementById('playerOneMarkerInput').value;
+      const playerTwoMarker = document.getElementById('playerTwoMarkerInput').value;
+
+      if (playerOneMarker === playerTwoMarker){
+        event.preventDefault();
+        alert('Please select different markers for each player');
+      }
+    }
+
     const getPlayerNames = () => {
       const playerOneNameInput = document.getElementById('player1-name');
       const playerTwoNameInput = document.getElementById('player2-name');
@@ -101,7 +111,8 @@
     return {
       //TODO:Expose public methods and properties
       createPlayer,
-      getPlayerNames
+      getPlayerNames,
+      validateMarkers
     };
   })();
 
@@ -222,6 +233,10 @@ const uiModule = (function() {
 
   function initGame() {
     const { playerOneName, playerTwoName, playerOneMarker, playerTwoMarker } = playerModule.getPlayerNames();
+
+    if(!playerModule.validateMarkers(playerTwoMarker, playerOneMarker)){
+      console.log("Invalid marker selection. Please select different markers.");
+    }
 
     playerOne = playerModule.createPlayer(playerOneName, playerOneMarker);
     playerTwo = playerModule.createPlayer(playerTwoName, playerTwoMarker);
