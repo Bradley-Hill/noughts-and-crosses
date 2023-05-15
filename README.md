@@ -18,3 +18,5 @@ Moved the firstMove function into globalscope, it will only be temporary I hope,
 Starting the Javascript again from scratch, I aim to be more structured in my approach and more modular in my design, and for better clarity and lisibility of the code. - 10/05/2023
 
 Rebuilt the script, currently working, the cells display the player markers after being clicked, the objects property value is changed and used to check for a tie state. The win state is checked for by looking for three repeating markers. Misclicks are covered with validations. Next things to add are mostly cosmetic, a scoreboard perhaps, CSS in gneeral to make it look prettier. - 14/05/2023
+
+Slogged through some debugging regarding the validation of the markers, solved by disabling the submit button if the choice of markers is the same. Added a scoreboard that will display player names and scores after the first win.
