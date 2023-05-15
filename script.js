@@ -188,12 +188,12 @@
 
 // To see if there is a Draw/Win state on gameBoard.
     function checkGameState() {
-  const isTie = checkTieState();
-  if (isTie) {
+    const isTie = checkTieState();
+    if (isTie) {
     gameBoard.resetBoard();
     console.log("You Drew! Game Over!");
     console.log("Board reset...");
-    return null;
+      return null;
   }
 
   const isWin = checkWinState();
