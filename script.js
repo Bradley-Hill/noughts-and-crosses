@@ -9,9 +9,6 @@
   const playerTwoMarkerInput = document.getElementById('player2-marker');
   const submitButton = document.getElementById('submit-button');
 
-  playerOneMarkerInput.addEventListener('input', validateMarkers);
-  playerTwoMarkerInput.addEventListener('input', validateMarkers);
-
   //TODO:GameBoard FUNCTION(IIFE)
 
   const gameBoard = (function(){
@@ -74,6 +71,8 @@
   //TODO:PlayerModule FUNCTION(IIFE)
 
   const playerModule = (function(){
+    playerOneMarkerInput.addEventListener('input', validateMarkers);
+    playerTwoMarkerInput.addEventListener('input', validateMarkers);
     const createPlayer = (name,marker) => {
       if(typeof name !== 'string'){
         throw new Error('Invalid name, try again, with letters this time...')
@@ -250,7 +249,6 @@ const uiModule = (function() {
 
     function handleFormSubmit(event) {
       event.preventDefault();
-      playerModule.validateMarkers(event);
 
       const { playerOneName, playerTwoName, playerOneMarker, playerTwoMarker } = playerModule.getPlayerNames();
 
