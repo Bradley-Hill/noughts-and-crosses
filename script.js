@@ -126,8 +126,8 @@
   //GameModule FUNCTION(IIFE)
 
   const gameModule = (function(){
-
     let currentPlayer;
+
     function firstMove(playerOne, playerTwo){
       let firstPlayer = playerOne;
       if (Math.random() > 0.5 ){
@@ -236,6 +236,8 @@ return {
 const uiModule = (function() {
   let playerOne;
   let playerTwo;
+  let playerXScore = 0;
+  let playerYScore = 0;
 
   function initGame() {
 
@@ -288,11 +290,16 @@ const uiModule = (function() {
     if(winner){
       gameModule.setCurrentPlayer(winner);
       console.log(`${winner.name} wins!`);
-      gameBoard.resetBoard();
+      if (winner.marker === playerOne.marker){
+        playerXScore++;
+      } else {
+        playerYScore++;
+      }
       //other actions to be performed on a win HERE!!!!
 
       console.log("Game board after reset:");
       console.log(gameBoard.getGameBoard());
+      gameBoard.resetBoard();
     } else {
       gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
       activePlayer.textContent = gameModule.getCurrentPlayer().name;
