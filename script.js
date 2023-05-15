@@ -313,6 +313,11 @@ const uiModule = (function() {
 
   gridContainer.addEventListener("click", handleCellClick);
 
+  const updateScoreboard = function(){
+    const scoreboardElement = document.getElementById("scoreboard");
+    scoreboardElement.textContent = `Player X Score: ${playerXScore}\nPlayer Y Score: ${playerYScore}\n`
+  }
+
   return {
     //TODO:Expose public methods and properties
     displayGameBoard,
