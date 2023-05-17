@@ -297,7 +297,7 @@ const uiModule = (function() {
       }
       updateScoreboard();
       //other actions to be performed on a win HERE!!!!
-
+      gameModule.setCurrentPlayer(currentPlayer === playerOne ? playerTwo : playerOne);
       console.log("Game board after reset:");
       console.log(gameBoard.getGameBoard());
       gameBoard.resetBoard();
