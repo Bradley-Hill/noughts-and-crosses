@@ -42,5 +42,7 @@ div.cell:hover {
   color: ivory;
 }
 
-form {
+#form-container.form-container-wrapper {
+  display: flex;
+  flex-direction: row;
 }
