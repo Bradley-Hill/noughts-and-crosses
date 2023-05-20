@@ -57,6 +57,66 @@ label {
   margin: 10px;
 }
 
-/* input[type="text"] {
-  margin: 10px;
-} */
+button,
+select {
+  box-shadow: 5px 5px 5px black;
+  text-align: center;
+  padding: 5px;
+}
+
+input[type="text"] {
+  border-radius: 10px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+section.footer {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.select-box {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.select-box:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #f1f9ec;
+  text-decoration: none;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  color: #f1f9ec;
+}
+
+section.footer > div {
+  margin-top: 10px;
+  text-align: center;
+}
+
+div#scoreboard {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
