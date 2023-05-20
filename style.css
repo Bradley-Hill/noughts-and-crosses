@@ -4,6 +4,7 @@
   font-family: "Anuphan", "Darker Grotesque", "sans-serif";
   border: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -39,10 +40,23 @@ div.cell:hover {
   transform: scale(1.15);
   border: 5px solid red;
   background-color: red;
-  color: ivory;
+  color: #f1f9ec;
 }
 
 #form-container > form > div {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
+
+h2 {
+  margin: 10px;
+}
+
+label {
+  margin: 10px;
+}
+
+/* input[type="text"] {
+  margin: 10px;
+} */
