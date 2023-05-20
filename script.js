@@ -277,7 +277,7 @@ const uiModule = (function() {
     const cell = gameBoard.getGameBoard()[gameBoard.getIndex(row, col)];
 
     if(cell.value !== ""){
-      console.log("Cell already filled.Choose an unoccupied cell.");
+      alert("Cell already filled.Choose an unoccupied cell.");
       return;
     }
 
